@@ -20,6 +20,7 @@ Once the environment is set up, in one terminal, run `vagrant ssh`, then `/vagra
 This is a mock server: every request gets a 200 response, and the request is fully printed to the terminal.
 
 ### Gather metrics
+In the other terminal, run:
 ```
 vagrant ssh
 # wait for connection
@@ -39,6 +40,19 @@ See `shared_data/check-metric-shell.sh` for the first quick-and-dirty version.
 The configuration is part of the script.
 Timeouts aren't handled.
 
-## Environment
+## Misc notes
+### Environment
 I tested this on Ubuntu 14.04, but it should work on other Linuxes.
 There's a `Vagrantfile` if you'd like to spin up a disposable environment for testing.
+
+### Choices made
+I considered httparty for http requests, but it wasn't available with the given version of Ruby.
+
+I considered the dogapi gem, but getting debug output seemed too complicated for the time constraints.
+
+I could have rewritten the json generation, using Ruby hashes, but I already had something that worked.
+I considered erb to generate the json, but I didn't realize at the time that it was installed.
+
+If a check times out, we could submit an error, but in this case, we don't submit anything, and we can have Datadog alert upon the absense of metrics.
+
+
