@@ -1,0 +1,10 @@
+---
+datadog:
+  api_key: fake_datadog_key
+  api_endpoint: http://localhost:5678/api
+overall:
+  timeout: "5s" # 5 sec per check
+checks:
+- file: "aes.sh"
+- file: "root-df-percent.sh"
+# - file: "slowpoke.sh"
